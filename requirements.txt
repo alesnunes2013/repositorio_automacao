@@ -4,6 +4,3 @@ openai
 gspread
 google-auth
 google-auth-oauthlib
-
-
-
