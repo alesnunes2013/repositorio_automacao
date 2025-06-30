@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Responder DM com IA</title>
+</head>
+<body>
+    <h2>Simulador de DM do Instagram com IA</h2>
+    <form method="POST">
+        <label for="mensagem">Mensagem recebida:</label><br>
+        <textarea name="mensagem" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Gerar Resposta com IA">
+    </form>
+    {% if resposta %}
+        <h3>Resposta da IA:</h3>
+        <p>{{ resposta }}</p>
+    {% endif %}
+</body>
+</html>
