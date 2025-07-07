@@ -1,22 +1,24 @@
-from flask import Flask, render_template, request
-from resposta_ia import gerar_resposta
-import csv
-from datetime import datetime
-from logger import logar_em_google_sheets
-
+from flask import Flask, request
 
 app = Flask(__name__)
 
-LOG_FILE = 'log.csv'
+VERIFY_TOKEN = "1F500A879AFD19B13118"
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route("/webhook", methods=["GET"])
+def verificar_webhook():
+    mode = request.args.get("hub.mode")
+    token = request.args.get("hub.verify_token")
+    challenge = request.args.get("hub.challenge")
+
+    if mode == "subscribe" and token == VERIFY_TOKEN:
+        return challenge, 200
+    else:
+        return "Erro na verificação", 403
+
+@app.route("/", methods=["GET"])
 def index():
-    resposta = None
-    if request.method == 'POST':
-        mensagem = request.form['mensagem']
-        resposta = gerar_resposta(mensagem)
-        logar_em_google_sheets(mensagem, resposta)
-    return render_template('index.html', resposta=resposta)
+    return "Servidor ativo", 200
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
+
