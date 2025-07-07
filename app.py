@@ -6,14 +6,15 @@ import os
 
 app = Flask(__name__)
 
+# Tokens de verificação
 VERIFY_TOKEN = "1F500A879AFD19B13118"
-PAGE_ACCESS_TOKEN = "IGAAZAtNznD6MpBZAE4wX3B5aE52elB3VTM4aFdGOG5hVTFHSm1YQU5CQVFtajFqMnJiVHJ4YmpXTXBRYzBBMkxJQmxBS1htbG1LWHBya1pEQ2tOX01LZAncwTEZAFaUxkejd6eUlkWUN5QzNYVXBXQkdZAZAEgxeUFlbV9UODQwZAWFrQQZDZD"  # <-- Substitua pelo seu token de página válido
+PAGE_ACCESS_TOKEN = "IGAAZAtNznD6MpBZAE4wX3B5aE52elB3VTM4aFdGOG5hVTFHSm1YQU5CQVFtajFqMnJiVHJ4YmpXTXBRYzBBMkxJQmxBS1htbG1LWHBya1pEQ2tOX01LZAncwTEZAFaUxkejd6eUlkWUN5QzNYVXBXQkdZAZAEgxeUFlbV9UODQwZAWFrQQZDZDAM"  # ⚠️ Substitua aqui pelo token real
 
 @app.route("/", methods=["GET"])
 def index():
     return "Servidor está ativo!", 200
 
-# ✅ Verificação inicial do webhook
+# ✅ Verificação do Webhook pelo Facebook
 @app.route("/webhook", methods=["GET"])
 def verificar_webhook():
     mode = request.args.get("hub.mode")
@@ -21,8 +22,10 @@ def verificar_webhook():
     challenge = request.args.get("hub.challenge")
 
     if mode == "subscribe" and token == VERIFY_TOKEN:
+        print("✅ Verificação do webhook realizada com sucesso.")
         return challenge, 200
     else:
+        print("❌ Verificação do webhook falhou.")
         return "Erro na verificação", 403
 
 # ✅ Recebimento de mensagens do Instagram
@@ -52,7 +55,7 @@ def receber_mensagem():
         print("❌ Erro ao processar webhook:", e)
         return "Erro no processamento", 500
 
-# ✅ Envio da resposta automática ao Instagram
+# ✅ Envio da resposta automática via API Graph
 def enviar_resposta(id_usuario, mensagem):
     url = f"https://graph.facebook.com/v19.0/me/messages?access_token={PAGE_ACCESS_TOKEN}"
     payload = {
@@ -60,10 +63,15 @@ def enviar_resposta(id_usuario, mensagem):
         "message": {"text": mensagem}
     }
     headers = {"Content-Type": "application/json"}
-    resposta = requests.post(url, json=payload, headers=headers)
-    print("📤 Resposta enviada:", resposta.json())
 
-# ✅ Escuta a porta correta no ambiente da Render
+    try:
+        resposta = requests.post(url, json=payload, headers=headers)
+        print("📤 Resposta enviada:", resposta.json())
+    except Exception as e:
+        print("❌ Falha ao enviar resposta:", e)
+
+# ✅ Porta compatível com Render.com
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 5000))  # Render define PORT automaticamente
     app.run(debug=True, host="0.0.0.0", port=port)
+
