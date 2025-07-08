@@ -3,3 +3,4 @@ log.csv
 __pycache__/ 
 *.pyc 
 credentials.json.json
+"credentials.json.json" 
