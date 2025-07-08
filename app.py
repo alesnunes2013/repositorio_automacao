@@ -3,12 +3,16 @@ from resposta_ia import gerar_resposta
 from logger import logar_em_google_sheets
 import requests
 import os
+from dotenv import load_dotenv
+
+# ✅ Carrega variáveis do .env
+load_dotenv()
+
+# ✅ Tokens carregados de variáveis de ambiente
+VERIFY_TOKEN = os.getenv("VERIFY_TOKEN")
+PAGE_ACCESS_TOKEN = os.getenv("INSTAGRAM_TOKEN")
 
 app = Flask(__name__)
-
-# Tokens de verificação
-VERIFY_TOKEN = "1F500A879AFD19B13118"
-PAGE_ACCESS_TOKEN = "EAAUpsEackywBPMDMMgAShij2hBiLlFZBoghSNGekLa2kbYGuvpjD96zwfOsfbZAilEZAB5ZBRjh9nSb0KONu40fEPrhraC4QkOwPBZCnV9mTe1B0ZA3xrXy3YGTWaDOKhCqawEDKtakzXZC7Y6LfZBgLUo8wcZCMInqYKMs7jMf94GZAHcJt1ANMfwXCHSueUK3teKZBqsqBKSamzqaz1jbi4P5iVruSz0T7ISQMtFv"  # ⚠️ Substitua aqui pelo token real
 
 @app.route("/", methods=["GET"])
 def index():
@@ -74,4 +78,5 @@ def enviar_resposta(id_usuario, mensagem):
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))  # Render define PORT automaticamente
     app.run(debug=True, host="0.0.0.0", port=port)
+
 
