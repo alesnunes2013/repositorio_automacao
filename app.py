@@ -72,6 +72,6 @@ def enviar_resposta(id_usuario, mensagem):
 
 # ✅ Porta compatível com Render.com
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # Render define PORT automaticamente
+    port = int(os.environ.get("PORT", 10000))  # Render define PORT automaticamente
     app.run(debug=True, host="0.0.0.0", port=port)
 
