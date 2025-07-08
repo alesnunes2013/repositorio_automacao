@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # Tokens de verificação
 VERIFY_TOKEN = "1F500A879AFD19B13118"
-PAGE_ACCESS_TOKEN = "EAAUpsEackywBPBqerf7vq8r0DvDzUN6O3yBFYeyWQvv0E8DPsyqcUdfVfGWm3d2LKVhZA2yDWTVBHMRsRxqrEdV4OoZACNZCkTZCw3xbcyfkXBLOvTcdCgLZAZAl9WcIotGcqAYpe7YAgmjmuQJ06o987LZB9jYZBdEGbH2gMjUojTL0Nb7iSJZBdvqqDpYIPZAbKDb5oz6doDflFprUYbBVi7SZChnhDZBWLU0wBYiZAJBJE2k6UawZDZD"  # ⚠️ Substitua aqui pelo token real
+PAGE_ACCESS_TOKEN = "EAAUpsEackywBPMDMMgAShij2hBiLlFZBoghSNGekLa2kbYGuvpjD96zwfOsfbZAilEZAB5ZBRjh9nSb0KONu40fEPrhraC4QkOwPBZCnV9mTe1B0ZA3xrXy3YGTWaDOKhCqawEDKtakzXZC7Y6LfZBgLUo8wcZCMInqYKMs7jMf94GZAHcJt1ANMfwXCHSueUK3teKZBqsqBKSamzqaz1jbi4P5iVruSz0T7ISQMtFv"  # ⚠️ Substitua aqui pelo token real
 
 @app.route("/", methods=["GET"])
 def index():
