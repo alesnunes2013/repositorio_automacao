@@ -1,0 +1,30 @@
+data_hora,mensagem_usuario,resposta_ia
+2025-06-28 12:13:50.541672,"qual o tipo de piso para área externa que vocês recomendam? padrão são paulo?
+","Erro ao gerar resposta: 
+
+You tried to access openai.ChatCompletion, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+"
+2025-06-28 12:16:09.159915,Quais são os meios de pagamento?,Erro ao gerar resposta: module 'openai' has no attribute 'chat'
+2025-06-28 12:18:30.563052,"como faço o pagamento?
+",Erro ao gerar resposta: module 'openai' has no attribute 'chat'
+2025-06-28 17:21:54.685868,ola,Olá! Como posso ajudar você hoje?
+2025-06-28 17:22:49.967670,"quais são os modelos de pisos para alto tráfeogo? mapa são paulo?
+","Alguns modelos de pisos recomendados para alto tráfego em São Paulo são:
+
+1. Porcelanato polido: resistente e de fácil limpeza, ideal para locais com grande circulação de pessoas.
+
+2. Piso vinílico: durável, fácil de manter e com diversas opções de cores e texturas.
+
+3. Granito: resistente a riscos e manchas, ideal para ambientes comerciais ou públicos.
+
+4. Cerâmica esmaltada: possui alta resistência e durabilidade, sendo uma ótima opção para locais com alto tráfego.
+
+5. Laminado de madeira: resistente e de fácil manutenção, ideal para ambientes comerciais e públicos.
+
+Esses são apenas alguns exemplos de modelos de pisos recomendados para locais com alto tráfego em São Paulo, mas é importante consultar um profissional especializado para avaliar a melhor opção para cada ambiente específico."
